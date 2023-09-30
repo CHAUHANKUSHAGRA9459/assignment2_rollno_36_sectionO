@@ -1,0 +1,49 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        scanner.nextLine(); 
+        String input = scanner.nextLine();
+        int result = countCBNumbers(input);
+        System.out.println(result);
+    }
+
+    public static boolean isCBNumber(int num) {
+        if (num <= 1) {
+            return false;
+        }
+
+        int[] cbNumbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+
+        for (int cb : cbNumbers) {
+            if (num == cb) {
+                return true;
+            }
+            if (num % cb == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static int countCBNumbers(String str) {
+        int n = str.length();
+        int count = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j <= n; j++) {
+                String substring = str.substring(i, j);
+                int num = Integer.parseInt(substring);
+                if (isCBNumber(num)) {
+                    count++;
+                    i = j - 1; 
+                    break;
+                }
+            }
+        }
+
+        return count;
+    }
+}
