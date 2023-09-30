@@ -1,0 +1,29 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        String result = removeConsecutiveDuplicates(input);
+        System.out.println(result);
+    }
+
+    public static String removeConsecutiveDuplicates(String s) {
+        if (s == null || s.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder result = new StringBuilder();
+        char prevChar = s.charAt(0);
+        result.append(prevChar);
+
+        for (int i = 1; i < s.length(); i++) {
+            char currentChar = s.charAt(i);
+            if (currentChar != prevChar) {
+                result.append(currentChar);
+                prevChar = currentChar;
+            }
+        }
+
+        return result.toString();
+    }
+}
