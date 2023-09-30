@@ -1,0 +1,32 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        // Your Code Here
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        char maxFrequencyChar = findMaxFrequencyCharacter(input);
+        System.out.println(maxFrequencyChar);
+        scanner.close();
+    }
+
+    public static char findMaxFrequencyCharacter(String input) {
+        int[] frequencyCount = new int[256]; 
+
+        for (int i = 0; i < input.length(); i++) {
+            char currentChar = input.charAt(i);
+            frequencyCount[currentChar]++;
+        }
+
+        char maxFrequencyChar = '\0'; 
+        int maxFrequency = 0;
+
+        for (int i = 0; i < 256; i++) {
+            if (frequencyCount[i] > maxFrequency) {
+                maxFrequency = frequencyCount[i];
+                maxFrequencyChar = (char) i;
+            }
+        }
+
+        return maxFrequencyChar;
+    }
+}
